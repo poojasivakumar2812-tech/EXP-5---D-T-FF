@@ -17,7 +17,6 @@ Q(next) = T ⊕ Q   (Q(next) = Q if T = 0, Q(next) = Q' if T = 1)
 ## Design / RTL Program
 // gedit dff_tff.v
 
- ```
 module dff (
     input  wire clk,   // clock
     input  wire rst,   // asynchronous active-high reset
@@ -48,15 +47,10 @@ module tff (
     end
 endmodule
 
-```
 ## Testbench Program
 
-
 // gedit tb5.v
-
-
  module tb5;
- 
     reg  clk, rst, D, T;
     wire Qd, Qt;
  
@@ -91,7 +85,8 @@ endmodule
         // ---- Apply asynchronous reset ----
         rst = 1; D = 0; T = 0;
         #7  rst = 0;
-         // ---- Apply test vectors on successive clock edges ----
+ 
+        // ---- Apply test vectors on successive clock edges ----
         @(negedge clk); D = 1; T = 1;
         @(negedge clk); D = 0; T = 1;
         @(negedge clk); D = 1; T = 0;
@@ -105,11 +100,36 @@ endmodule
  
         #20 $finish;
     end
-    endmodule
+endmodule
 
 ## Truth Table
+D Flip-Flop (rising clock edge)
+rst
+D
+Q(next)
+1
+X
+0
+0
+0
+0
+0
+1
+1
 
-<img width="349" height="264" alt="image" src="https://github.com/user-attachments/assets/d05e6f9d-ff68-466e-9eb8-52e22fa1b961" />
+T Flip-Flop (rising clock edge)
+rst
+T
+Q(next)
+1
+X
+0
+0
+0
+Q (no change)
+0
+1
+Q' (toggle)
 
 ## Simulation Procedure
 
@@ -165,7 +185,9 @@ Q(next) = T ⊕ Q   (T Flip-Flop)
 The design was compiled and simulated using Synopsys VCS, and the functionality was verified using DVE waveform analysis, matching the expected truth table.
 
 ## Output
-<img width="595" height="369" alt="image" src="https://github.com/user-attachments/assets/38290e4d-a813-4e0c-b891-68044c90623b" />
+<img width="1920" height="1080" alt="DLC EX 5 01" src="https://github.com/user-attachments/assets/7abc4248-295b-4564-a7ac-407a76502bc3" />
+<img width="1920" height="1080" alt="DLC EX 5 02" src="https://github.com/user-attachments/assets/ff2e256c-3f2e-4109-a9ff-62f25cf2d8e3" />
+
 
 ## Viva-Voce Questions
 
